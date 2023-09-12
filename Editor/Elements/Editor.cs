@@ -7,10 +7,12 @@ namespace Anvil.Editor.Elements
     {
         public Editor(UnityEngine.Object obj)
         {
-            UnityEditor.Editor editor = UnityEditor.Editor.CreateEditor(obj);
+            UnityEditor.Editor.CreateCachedEditor(obj, null, ref cachedEditor);
 
-            VisualElement = new(() => { editor.OnInspectorGUI(); });
+            VisualElement = new(() => { cachedEditor.OnInspectorGUI(); });
         }
+
+        readonly UnityEditor.Editor cachedEditor;
 
         protected override IMGUIContainer VisualElement { get; }
     }
