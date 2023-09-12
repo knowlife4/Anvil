@@ -11,16 +11,13 @@ namespace Anvil.Editor.Interfaces
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
         {
             Property = property;
-            
-            if(RenderDefault) base.CreatePropertyGUI(property);
-            
+
             VisualElement root = Root.GetVisualElement();
             root.style.flexGrow = 1;
+
             return root;
         }
 
         public abstract Element Root { get; }
-
-        protected abstract bool RenderDefault { get; }
     }
 }
