@@ -1,19 +1,25 @@
 ﻿using Anvil.Elements;
+using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace Anvil.Editor.Elements
 {
     public class Editor : Element<IMGUIContainer>
     {
-        public Editor(UnityEngine.Object obj)
-        {
-            UnityEditor.Editor.CreateCachedEditor(obj, null, ref cachedEditor);
+        public Editor(UnityEngine.Object obj) => Obj = obj;
 
-            VisualElement = new(() => { cachedEditor.OnInspectorGUI(); });
+        Object Obj { get; }
+
+        UnityEditor.Editor cachedEditor;
+        UnityEditor.Editor CachedEditor
+        {
+            get
+            {
+                if(cachedEditor == null) UnityEditor.Editor.CreateCachedEditor(Obj, null, ref cachedEditor);
+                return cachedEditor;
+            }
         }
 
-        readonly UnityEditor.Editor cachedEditor;
-
-        protected override IMGUIContainer VisualElement { get; }
+        protected override IMGUIContainer VisualElement => new(() => { cachedEditor.OnInspectorGUI(); });
     }
 }
