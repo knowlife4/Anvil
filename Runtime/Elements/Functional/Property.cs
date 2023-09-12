@@ -5,7 +5,7 @@ namespace Anvil.Elements.Functional
 {
     public class Property : Element<PropertyField>
     {
-        public Property(SerializedProperty property) => VisualElement = new(property);
+        public Property(SerializedProperty property, string label = null) => VisualElement = new(property, label ?? property.displayName);
 
         protected override PropertyField VisualElement { get; }
     }

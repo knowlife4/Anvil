@@ -6,20 +6,14 @@ namespace Anvil.Editor.Elements
 {
     public class Editor : Element<IMGUIContainer>
     {
-        public Editor(UnityEngine.Object obj) => Obj = obj;
-
-        Object Obj { get; }
-
-        UnityEditor.Editor cachedEditor;
-        UnityEditor.Editor CachedEditor
+        public Editor(UnityEngine.Object obj)
         {
-            get
-            {
-                if(cachedEditor == null) UnityEditor.Editor.CreateCachedEditor(Obj, null, ref cachedEditor);
-                return cachedEditor;
-            }
+            EmbeddedEditor = UnityEditor.Editor.CreateEditor(obj);
+            VisualElement = new IMGUIContainer(() => { EmbeddedEditor.OnInspectorGUI(); });
         }
 
-        protected override IMGUIContainer VisualElement => new(() => { if(cachedEditor != null) cachedEditor.OnInspectorGUI(); });
+        UnityEditor.Editor EmbeddedEditor { get; }
+
+        protected override IMGUIContainer VisualElement { get; }
     }
 }
