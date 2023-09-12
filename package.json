@@ -1,0 +1,17 @@
+{
+    "name": "com.slice.anvil",
+    "version": "0.0.1",
+    "displayName": "Anvil",
+    "description": "A Declarative GUI Framework for Unity Editor Extensions",
+    "unity": "2022.3",
+    "unityRelease": "7f1",
+    "author": 
+    {
+        "name": "Knowlife4",
+        "email": "contact@knowlife4.com"
+    },
+    "samples": 
+    [
+        
+    ]
+}
