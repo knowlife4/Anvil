@@ -1,6 +1,7 @@
-﻿using UnityEngine.UIElements;
+﻿using Anvil.Elements;
+using UnityEngine.UIElements;
 
-namespace Anvil.Elements.Functional
+namespace Anvil.Editor.Elements
 {
     public class Editor : Element<IMGUIContainer>
     {
