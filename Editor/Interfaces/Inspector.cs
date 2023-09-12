@@ -5,7 +5,7 @@ using UnityEngine.UIElements;
 
 namespace Anvil.Editor.Interfaces
 {
-    public abstract class Inspector<T> : UnityEditor.Editor, IInterface where T : UnityEngine.Object
+    public abstract class Inspector : UnityEditor.Editor, IInterface
     {
         public override VisualElement CreateInspectorGUI()
         { 
@@ -38,7 +38,7 @@ namespace Anvil.Editor.Interfaces
             return container;
         }
 
-        protected T Target => (T)target;
+        protected UnityEngine.Object Target => target;
 
         public abstract Element Root { get; }
 
