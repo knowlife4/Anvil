@@ -4,17 +4,10 @@ using UnityEngine.UIElements;
 
 namespace Anvil.Editor.Elements
 {
-    public class Editor : Element
+    public class Editor : Element<InspectorElement>
     {
-        public Editor(UnityEngine.Object obj)
-        {
-            UnityEditor.Editor editor = UnityEditor.Editor.CreateEditor(obj);
-            VisualElement inspector = editor.CreateInspectorGUI();
-            inspector.Bind(editor.serializedObject);
+        public Editor(UnityEngine.Object obj) => VisualElement = new(obj);
 
-            VisualElement = inspector;
-        }
-
-        protected override VisualElement VisualElement { get; }
+        protected override InspectorElement VisualElement { get; }
     }
 }
