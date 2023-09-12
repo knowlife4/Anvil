@@ -1,19 +1,20 @@
 ﻿using Anvil.Elements;
-using UnityEngine;
+using UnityEditor.UIElements;
 using UnityEngine.UIElements;
 
 namespace Anvil.Editor.Elements
 {
-    public class Editor : Element<IMGUIContainer>
+    public class Editor : Element
     {
         public Editor(UnityEngine.Object obj)
         {
-            EmbeddedEditor = UnityEditor.Editor.CreateEditor(obj);
-            VisualElement = new IMGUIContainer(() => { EmbeddedEditor.OnInspectorGUI(); });
+            UnityEditor.Editor editor = UnityEditor.Editor.CreateEditor(obj);
+            VisualElement inspector = editor.CreateInspectorGUI();
+            inspector.Bind(editor.serializedObject);
+
+            VisualElement = inspector;
         }
 
-        UnityEditor.Editor EmbeddedEditor { get; }
-
-        protected override IMGUIContainer VisualElement { get; }
+        protected override VisualElement VisualElement { get; }
     }
 }
