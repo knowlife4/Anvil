@@ -20,6 +20,6 @@ namespace Anvil.Editor.Elements
             }
         }
 
-        protected override IMGUIContainer VisualElement => new(() => { cachedEditor.OnInspectorGUI(); });
+        protected override IMGUIContainer VisualElement => new(() => { if(cachedEditor != null) cachedEditor.OnInspectorGUI(); });
     }
 }
