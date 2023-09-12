@@ -36,6 +36,12 @@ namespace Anvil.Elements
             return this;
         }
 
+        public Element<TVisualElement> Event<T>(EventCallback<T> callback, bool trickleDown = false) where T : EventBase<T>, new()
+        {
+            VisualElement.RegisterCallback<T>(callback, trickleDown ? TrickleDown.TrickleDown : TrickleDown.NoTrickleDown);
+            return this;
+        }
+
         public T Get<T>(out T node) where T : Node
         {
             node = this as T;
